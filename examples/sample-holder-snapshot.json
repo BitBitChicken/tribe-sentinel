@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-16T10:00:00.000Z",
+  "network": "solana-mainnet",
+  "token": {
+    "symbol": "DEMO",
+    "mintAddress": "ExampleMintAddress111111111111111111111111",
+    "decimals": 6,
+    "totalSupplyRaw": "1000000000000000"
+  },
+  "holders": [
+    {
+      "address": "ExampleWalletA111111111111111111111111111",
+      "balanceRaw": "200000000000000"
+    },
+    {
+      "address": "ExampleWalletB111111111111111111111111111",
+      "balanceRaw": "150000000000000"
+    },
+    {
+      "address": "ExampleWalletC111111111111111111111111111",
+      "balanceRaw": "100000000000000"
+    },
+    {
+      "address": "ExampleWalletD111111111111111111111111111",
+      "balanceRaw": "80000000000000"
+    },
+    {
+      "address": "ExampleWalletE111111111111111111111111111",
+      "balanceRaw": "70000000000000"
+    },
+    {
+      "address": "ExampleWalletF111111111111111111111111111",
+      "balanceRaw": "60000000000000"
+    },
+    {
+      "address": "ExampleWalletG111111111111111111111111111",
+      "balanceRaw": "50000000000000"
+    },
+    {
+      "address": "ExampleWalletH111111111111111111111111111",
+      "balanceRaw": "40000000000000"
+    },
+    {
+      "address": "ExampleWalletI111111111111111111111111111",
+      "balanceRaw": "30000000000000"
+    },
+    {
+      "address": "ExampleWalletJ111111111111111111111111111",
+      "balanceRaw": "20000000000000"
+    }
+  ],
+  "walletClusters": [
+    {
+      "clusterId": "demo-cluster-1",
+      "confidenceScore": 0.87,
+      "addresses": [
+        "ExampleWalletA111111111111111111111111111",
+        "ExampleWalletD111111111111111111111111111"
+      ],
+      "evidence": [
+        "Shared funding source",
+        "Purchases occurred within the same launch window"
+      ]
+    }
+  ],
+  "notes": [
+    "This file contains synthetic demonstration data.",
+    "All raw token balances are encoded as decimal strings.",
+    "Wallet-cluster relationships are analytical inferences, not proof of common ownership."
+  ]
+}
