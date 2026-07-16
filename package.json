@@ -1,0 +1,29 @@
+{
+  "name": "tribe-sentinel",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open-source Solana intelligence and risk analytics for Tribe.run tokens.",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "solana",
+    "tribe-run",
+    "amm",
+    "blockchain-analytics",
+    "wallet-clustering",
+    "risk-analysis"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  }
+}
