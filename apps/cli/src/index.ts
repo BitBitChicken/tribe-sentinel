@@ -12,6 +12,11 @@ import {
 } from "../../../packages/amm-engine/src/index.js";
 
 import {
+  analyzeConcentration,
+  type HolderBalance,
+} from "../../../packages/risk-engine/src/concentration.js";
+
+import {
   runSellStressTest,
   type SellStressScenario,
 } from "../../../packages/amm-engine/src/stress-test.js";
@@ -30,6 +35,49 @@ const TRADING_FEE_BPS = 300;
 
 const STRESS_TEST_WALLET_TOKENS =
   100_000_000n;
+
+const SAMPLE_HOLDERS: HolderBalance[] = [
+  {
+    address: "wallet-a",
+    balance: 200_000_000n * TOKEN_SCALE,
+  },
+  {
+    address: "wallet-b",
+    balance: 150_000_000n * TOKEN_SCALE,
+  },
+  {
+    address: "wallet-c",
+    balance: 100_000_000n * TOKEN_SCALE,
+  },
+  {
+    address: "wallet-d",
+    balance: 80_000_000n * TOKEN_SCALE,
+  },
+  {
+    address: "wallet-e",
+    balance: 70_000_000n * TOKEN_SCALE,
+  },
+  {
+    address: "wallet-f",
+    balance: 60_000_000n * TOKEN_SCALE,
+  },
+  {
+    address: "wallet-g",
+    balance: 50_000_000n * TOKEN_SCALE,
+  },
+  {
+    address: "wallet-h",
+    balance: 40_000_000n * TOKEN_SCALE,
+  },
+  {
+    address: "wallet-i",
+    balance: 30_000_000n * TOKEN_SCALE,
+  },
+  {
+    address: "wallet-j",
+    balance: 20_000_000n * TOKEN_SCALE,
+  },
+];
 
 const initialState: AmmState = {
   tokenReserve: TOTAL_SUPPLY_RAW,
@@ -88,7 +136,11 @@ function formatSol(lamports: bigint): string {
   )} SOL`;
 }
 
-function formatTokenAmount(
+function formatTokenAmount(function formatBasisPoints(
+  basisPoints: number,
+): string {
+  return `${(basisPoints / 100).toFixed(2)}%`;
+}
   rawAmount: bigint,
 ): string {
   return formatUnits(
@@ -282,6 +334,72 @@ function printSellPressureSimulation(
   console.log("");
 }
 
+function printConcentrationAnalysis(): void {
+  const metrics = analyzeConcentration(
+    SAMPLE_HOLDERS,
+    TOTAL_SUPPLY_RAW,
+  );
+
+  console.log("");
+  printDivider();
+  console.log("Token Concentration Analysis");
+  printDivider();
+
+  console.log(
+    `Positive-balance holders: ${metrics.holderCount}`,
+  );
+
+  console.log(
+    `Largest holder:           ${
+      metrics.largestHolderAddress ?? "N/A"
+    }`,
+  );
+
+  console.log(
+    `Largest-holder share:     ${formatBasisPoints(
+      metrics.largestHolderShareBps,
+    )}`,
+  );
+
+  console.log(
+    `Top 1 share:              ${formatBasisPoints(
+      metrics.top1ShareBps,
+    )}`,
+  );
+
+  console.log(
+    `Top 5 share:              ${formatBasisPoints(
+      metrics.top5ShareBps,
+    )}`,
+  );
+
+  console.log(
+    `Top 10 share:             ${formatBasisPoints(
+      metrics.top10ShareBps,
+    )}`,
+  );
+
+  console.log(
+    `HHI:                      ${metrics.hhi}`,
+  );
+
+  console.log(
+    `Risk level:               ${metrics.riskLevel}`,
+  );
+
+  printDivider();
+
+  console.log(
+    "Note: Sample holder data is used for demonstration.",
+  );
+
+  console.log(
+    "Wallet-cluster-adjusted concentration will be added later.",
+  );
+
+  console.log("");
+}
+
 function main(): void {
   const stateAfterLaunch =
     printLaunchSimulation();
@@ -289,6 +407,8 @@ function main(): void {
   printSellPressureSimulation(
     stateAfterLaunch,
   );
+
+  printConcentrationAnalysis();
 }
 
 main();
