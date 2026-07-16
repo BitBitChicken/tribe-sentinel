@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   test:
-    name: Type Check and Unit Tests
+    name: Type Check, Tests and CLI
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -41,3 +41,6 @@ jobs:
 
       - name: Run unit tests
         run: npm test
+
+      - name: Run AMM launch simulation
+        run: npm run demo
