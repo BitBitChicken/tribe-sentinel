@@ -7,7 +7,7 @@ import {
   quoteBuy,
   quoteSell,
   type AmmState,
-} from "./index";
+} from "./index.js";
 
 const INITIAL_STATE: AmmState = {
   // 1 billion tokens with 6 decimals.
