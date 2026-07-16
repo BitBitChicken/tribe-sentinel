@@ -97,6 +97,80 @@ Sell 50M tokens: -19.6%
 Sell 100M tokens: -32.4%
 ```
 
+## Quick Start
+
+### Requirements
+
+- Node.js 20 or later
+- npm
+
+### Install
+
+```bash
+git clone https://github.com/BitBitChicken/tribe-sentinel.git
+cd tribe-sentinel
+npm ci
+```
+
+### Run the CLI demo
+
+```bash
+npm run demo
+```
+
+The demo currently includes:
+
+- Tribe-style AMM launch simulation
+- trading-fee calculation
+- buy-side price impact
+- sell-pressure stress testing
+- Top 1, Top 5, and Top 10 holder concentration
+- HHI concentration scoring
+- transparent concentration-risk classification
+
+### Run tests
+
+```bash
+npm test
+```
+
+### Run TypeScript checks
+
+```bash
+npm run typecheck
+```
+
+## Example CLI Output
+
+```text
+TRIBE SENTINEL
+AMM Launch Simulation
+
+Gross input:             25.69 SOL
+Total fee:               0.7707 SOL
+Effective AMM input:     24.9193 SOL
+
+Sell-Pressure Stress Test
+
+Sell  10% | Tokens: 10,000,000  | Net SOL: ... | Impact: ...
+Sell  25% | Tokens: 25,000,000  | Net SOL: ... | Impact: ...
+Sell  50% | Tokens: 50,000,000  | Net SOL: ... | Impact: ...
+Sell 100% | Tokens: 100,000,000 | Net SOL: ... | Impact: ...
+
+Token Concentration Analysis
+
+Largest-holder share: 20.00%
+Top 5 share:          60.00%
+Top 10 share:         80.00%
+HHI:                  928
+Risk level:           CRITICAL
+```
+
+## Documentation
+
+- [Methodology](docs/methodology.md)
+- [Sample holder snapshot](examples/sample-holder-snapshot.json)
+
 ## Technology
 
 - TypeScript
