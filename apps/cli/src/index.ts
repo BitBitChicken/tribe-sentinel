@@ -1,8 +1,8 @@
 /**
  * Tribe Sentinel CLI
  *
- * Runs reproducible Tribe-style AMM launch and
- * sell-pressure simulations.
+ * Runs reproducible Tribe-style AMM launch,
+ * sell-pressure, and concentration simulations.
  */
 
 import {
@@ -12,14 +12,14 @@ import {
 } from "../../../packages/amm-engine/src/index.js";
 
 import {
-  analyzeConcentration,
-  type HolderBalance,
-} from "../../../packages/risk-engine/src/concentration.js";
-
-import {
   runSellStressTest,
   type SellStressScenario,
 } from "../../../packages/amm-engine/src/stress-test.js";
+
+import {
+  analyzeConcentration,
+  type HolderBalance,
+} from "../../../packages/risk-engine/src/concentration.js";
 
 const LAMPORTS_PER_SOL = 1_000_000_000n;
 const TOKEN_DECIMALS = 6;
@@ -136,11 +136,7 @@ function formatSol(lamports: bigint): string {
   )} SOL`;
 }
 
-function formatTokenAmount(function formatBasisPoints(
-  basisPoints: number,
-): string {
-  return `${(basisPoints / 100).toFixed(2)}%`;
-}
+function formatTokenAmount(
   rawAmount: bigint,
 ): string {
   return formatUnits(
@@ -148,6 +144,12 @@ function formatTokenAmount(function formatBasisPoints(
     TOKEN_DECIMALS,
     6,
   );
+}
+
+function formatBasisPoints(
+  basisPoints: number,
+): string {
+  return `${(basisPoints / 100).toFixed(2)}%`;
 }
 
 function calculateMarketCapSol(
